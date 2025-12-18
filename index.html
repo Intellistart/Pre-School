@@ -1,69 +1,588 @@
-<!DOCTYPE html>
-<p>Where Skills, Care & Creativity Begin</p>
-</header>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intellistart Preschool - Where Learning Begins with Joy</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .enquiry-form {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .program-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="root" class="w-full h-full overflow-auto"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#FFF8F0",
+      surface_color: "#FFFFFF",
+      text_color: "#2D3748",
+      primary_action_color: "#FF6B6B",
+      secondary_action_color: "#4ECDC4",
+      font_family: "Poppins",
+      font_size: 16,
+      school_name: "Intellistart Preschool",
+      hero_title: "Where Learning Begins with Joy",
+      hero_subtitle: "Nurturing curious minds through play-based learning and innovative curriculum",
+      cta_button: "Book a School Visit",
+      about_heading: "Why Choose Intellistart?",
+      programs_heading: "Our Programs",
+      testimonial_heading: "What Parents Say",
+      footer_tagline: "Building tomorrow's leaders, today"
+    };
 
+    const config = window.elementSdk?.config || defaultConfig;
 
-<nav>
-<a href="#about">About</a>
-<a href="#programs">Programs</a>
-<a href="#curriculum">Curriculum</a>
-<a href="#enquiry">Enquiry</a>
-<a href="#contact">Contact</a>
-</nav>
+    async function onConfigChange(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
 
+      document.body.style.fontFamily = `${customFont}, sans-serif`;
+      document.body.style.backgroundColor = backgroundColor;
+      
+      const root = document.getElementById('root');
+      root.style.backgroundColor = backgroundColor;
+      
+      document.querySelectorAll('.surface-bg').forEach(el => {
+        el.style.backgroundColor = surfaceColor;
+      });
+      
+      document.querySelectorAll('.text-content').forEach(el => {
+        el.style.color = textColor;
+      });
+      
+      document.querySelectorAll('.primary-btn').forEach(el => {
+        el.style.backgroundColor = primaryColor;
+      });
+      
+      document.querySelectorAll('.secondary-btn').forEach(el => {
+        el.style.backgroundColor = secondaryColor;
+      });
+      
+      document.querySelectorAll('.nav-link').forEach(el => {
+        el.style.color = textColor;
+      });
+      
+      document.querySelectorAll('.nav-link::after').forEach(el => {
+        el.style.backgroundColor = primaryColor;
+      });
 
-<section id="about">
-<h2>About Intellistart</h2>
-<p>Intellistart Preschool offers a safe Dairy Care environment with skill‑based early education, inspired by global best practices.</p>
-</section>
+      const schoolNameEl = document.getElementById('school-name');
+      if (schoolNameEl) schoolNameEl.textContent = config.school_name || defaultConfig.school_name;
+      
+      const heroTitleEl = document.getElementById('hero-title');
+      if (heroTitleEl) {
+        heroTitleEl.textContent = config.hero_title || defaultConfig.hero_title;
+        heroTitleEl.style.fontSize = `${baseSize * 2.5}px`;
+        heroTitleEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
+      
+      const heroSubtitleEl = document.getElementById('hero-subtitle');
+      if (heroSubtitleEl) {
+        heroSubtitleEl.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+        heroSubtitleEl.style.fontSize = `${baseSize * 1.125}px`;
+        heroSubtitleEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
+      
+      const ctaButtonEl = document.getElementById('cta-button');
+      if (ctaButtonEl) {
+        ctaButtonEl.textContent = config.cta_button || defaultConfig.cta_button;
+        ctaButtonEl.style.fontSize = `${baseSize * 1.125}px`;
+        ctaButtonEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
+      
+      const aboutHeadingEl = document.getElementById('about-heading');
+      if (aboutHeadingEl) {
+        aboutHeadingEl.textContent = config.about_heading || defaultConfig.about_heading;
+        aboutHeadingEl.style.fontSize = `${baseSize * 2}px`;
+        aboutHeadingEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
+      
+      const programsHeadingEl = document.getElementById('programs-heading');
+      if (programsHeadingEl) {
+        programsHeadingEl.textContent = config.programs_heading || defaultConfig.programs_heading;
+        programsHeadingEl.style.fontSize = `${baseSize * 2}px`;
+        programsHeadingEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
+      
+      const testimonialHeadingEl = document.getElementById('testimonial-heading');
+      if (testimonialHeadingEl) {
+        testimonialHeadingEl.textContent = config.testimonial_heading || defaultConfig.testimonial_heading;
+        testimonialHeadingEl.style.fontSize = `${baseSize * 2}px`;
+        testimonialHeadingEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
+      
+      const footerTaglineEl = document.getElementById('footer-tagline');
+      if (footerTaglineEl) {
+        footerTaglineEl.textContent = config.footer_tagline || defaultConfig.footer_tagline;
+        footerTaglineEl.style.fontSize = `${baseSize}px`;
+        footerTaglineEl.style.fontFamily = `${customFont}, sans-serif`;
+      }
 
+      document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, a, button, label, input, span').forEach(el => {
+        el.style.fontFamily = `${customFont}, sans-serif`;
+      });
+    }
 
-<section id="programs">
-<h2>Our Programs</h2>
-<ul>
-<li>Playgroup (1.5 – 2.5 Years)</li>
-<li>Nursery (2.5 – 3.5 Years)</li>
-<li>LKG & UKG</li>
-</ul>
-</section>
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              window.elementSdk.setConfig({ secondary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
 
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["school_name", config.school_name || defaultConfig.school_name],
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["cta_button", config.cta_button || defaultConfig.cta_button],
+        ["about_heading", config.about_heading || defaultConfig.about_heading],
+        ["programs_heading", config.programs_heading || defaultConfig.programs_heading],
+        ["testimonial_heading", config.testimonial_heading || defaultConfig.testimonial_heading],
+        ["footer_tagline", config.footer_tagline || defaultConfig.footer_tagline]
+      ]);
+    }
 
-<section id="curriculum">
-<h2>Skill‑Based Curriculum</h2>
-<div class="cards">
-<div class="card">🧠 Cognitive Skills</div>
-<div class="card">🎨 Art & Craft</div>
-<div class="card">🤝 Social Skills</div>
-<div class="card">🏃 Gross & Fine Motor Skills</div>
-<div class="card">🥛 Dairy Care & Nutrition</div>
-</div>
-</section>
+    function createWebsite() {
+      const root = document.getElementById('root');
+      
+      root.innerHTML = `
+        <!-- Navigation -->
+        <nav class="surface-bg fixed top-0 left-0 right-0 z-50 shadow-md">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+              <div class="flex items-center">
+                <div class="text-content text-2xl font-bold">
+                  <span id="school-name">${config.school_name || defaultConfig.school_name}</span>
+                </div>
+              </div>
+              <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-content font-medium">Home</a>
+                <a href="#about" class="nav-link text-content font-medium">About</a>
+                <a href="#programs" class="nav-link text-content font-medium">Programs</a>
+                <a href="#admissions" class="nav-link text-content font-medium">Admissions</a>
+                <a href="#contact" class="nav-link text-content font-medium">Contact</a>
+              </div>
+              <button class="primary-btn text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition">
+                Enquire Now
+              </button>
+            </div>
+          </div>
+        </nav>
 
+        <!-- Hero Section -->
+        <section id="home" class="pt-32 pb-20 px-4">
+          <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+              <div class="fade-in">
+                <h1 id="hero-title" class="text-content text-5xl font-bold mb-6 leading-tight">
+                  ${config.hero_title || defaultConfig.hero_title}
+                </h1>
+                <p id="hero-subtitle" class="text-content text-lg mb-8 opacity-80">
+                  ${config.hero_subtitle || defaultConfig.hero_subtitle}
+                </p>
+                <div class="flex gap-4">
+                  <button id="cta-button" class="primary-btn text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition shadow-lg">
+                    ${config.cta_button || defaultConfig.cta_button}
+                  </button>
+                  <button class="secondary-btn text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition shadow-lg">
+                    Watch Video
+                  </button>
+                </div>
+              </div>
+              <div class="floating">
+                <svg class="w-full h-auto" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="250" cy="250" r="200" fill="#FFD93D" opacity="0.2"/>
+                  <circle cx="250" cy="200" r="80" fill="#FFB6C1"/>
+                  <circle cx="220" cy="180" r="15" fill="#2D3748"/>
+                  <circle cx="280" cy="180" r="15" fill="#2D3748"/>
+                  <path d="M 220 220 Q 250 240 280 220" stroke="#2D3748" stroke-width="3" fill="none"/>
+                  <circle cx="250" cy="320" r="100" fill="#87CEEB"/>
+                  <rect x="200" y="350" width="100" height="80" fill="#FF6B6B" rx="10"/>
+                  <circle cx="180" cy="250" r="30" fill="#FFB6C1"/>
+                  <circle cx="320" cy="250" r="30" fill="#FFB6C1"/>
+                  <polygon points="230,100 250,60 270,100" fill="#FFD93D"/>
+                  <polygon points="350,150 380,140 370,170" fill="#4ECDC4"/>
+                  <polygon points="150,300 120,310 130,280" fill="#FF6B6B"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<section id="enquiry">
-<h2>Admission Enquiry</h2>
-<form id="enquiryForm">
-<input type="text" placeholder="Parent Name" required>
-<input type="text" placeholder="Student Name" required>
-<input type="number" placeholder="Age" required>
-<input type="tel" placeholder="Mobile Number" required>
-<textarea placeholder="Message"></textarea>
-<button type="submit">Submit Enquiry</button>
-</form>
-</section>
+        <!-- Quick Stats -->
+        <section class="py-16 surface-bg">
+          <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div class="fade-in">
+                <div class="text-4xl font-bold text-content mb-2">15+</div>
+                <div class="text-content opacity-70">Years Experience</div>
+              </div>
+              <div class="fade-in">
+                <div class="text-4xl font-bold text-content mb-2">5000+</div>
+                <div class="text-content opacity-70">Happy Children</div>
+              </div>
+              <div class="fade-in">
+                <div class="text-4xl font-bold text-content mb-2">50+</div>
+                <div class="text-content opacity-70">Expert Teachers</div>
+              </div>
+              <div class="fade-in">
+                <div class="text-4xl font-bold text-content mb-2">12</div>
+                <div class="text-content opacity-70">Branches</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4">
+          <div class="max-w-7xl mx-auto">
+            <h2 id="about-heading" class="text-content text-4xl font-bold text-center mb-16">
+              ${config.about_heading || defaultConfig.about_heading}
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="card-hover surface-bg rounded-3xl p-8 text-center">
+                <div class="text-6xl mb-4">🎨</div>
+                <h3 class="text-content text-xl font-semibold mb-3">Creative Learning</h3>
+                <p class="text-content opacity-70">Hands-on activities that spark imagination and creativity</p>
+              </div>
+              <div class="card-hover surface-bg rounded-3xl p-8 text-center">
+                <div class="text-6xl mb-4">🛡️</div>
+                <h3 class="text-content text-xl font-semibold mb-3">Safe Environment</h3>
+                <p class="text-content opacity-70">24/7 CCTV monitoring and stringent safety protocols</p>
+              </div>
+              <div class="card-hover surface-bg rounded-3xl p-8 text-center">
+                <div class="text-6xl mb-4">👨‍🏫</div>
+                <h3 class="text-content text-xl font-semibold mb-3">Expert Educators</h3>
+                <p class="text-content opacity-70">Trained teachers passionate about early childhood development</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<section id="contact">
-<h2>Contact Us</h2>
-<p>📍 Bengaluru | ☎ 9XXXXXXXXX | ✉ info@intellistart.com</p>
-</section>
+        <!-- Programs Section -->
+        <section id="programs" class="py-20 px-4 surface-bg">
+          <div class="max-w-7xl mx-auto">
+            <h2 id="programs-heading" class="text-content text-4xl font-bold text-center mb-16">
+              ${config.programs_heading || defaultConfig.programs_heading}
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div class="card-hover bg-white rounded-3xl p-8 text-center">
+                <svg class="program-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="45" fill="#FFE5E5"/>
+                  <circle cx="50" cy="35" r="15" fill="#FF6B6B"/>
+                  <circle cx="35" cy="65" r="10" fill="#4ECDC4"/>
+                  <circle cx="65" cy="65" r="10" fill="#FFD93D"/>
+                </svg>
+                <h3 class="text-content text-xl font-semibold mb-2">Playgroup</h3>
+                <p class="text-content opacity-70 text-sm mb-4">1.5 - 2.5 years</p>
+                <p class="text-content opacity-70">Sensory exploration and social bonding</p>
+              </div>
+              <div class="card-hover bg-white rounded-3xl p-8 text-center">
+                <svg class="program-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="45" fill="#E5F5FF"/>
+                  <rect x="25" y="40" width="50" height="30" fill="#4ECDC4" rx="5"/>
+                  <circle cx="40" cy="30" r="8" fill="#FFD93D"/>
+                  <circle cx="60" cy="30" r="8" fill="#FF6B6B"/>
+                </svg>
+                <h3 class="text-content text-xl font-semibold mb-2">Nursery</h3>
+                <p class="text-content opacity-70 text-sm mb-4">2.5 - 3.5 years</p>
+                <p class="text-content opacity-70">Language development and motor skills</p>
+              </div>
+              <div class="card-hover bg-white rounded-3xl p-8 text-center">
+                <svg class="program-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="45" fill="#FFF5E5"/>
+                  <polygon points="50,20 65,45 90,45 70,60 80,85 50,70 20,85 30,60 10,45 35,45" fill="#FFD93D"/>
+                </svg>
+                <h3 class="text-content text-xl font-semibold mb-2">LKG</h3>
+                <p class="text-content opacity-70 text-sm mb-4">3.5 - 4.5 years</p>
+                <p class="text-content opacity-70">Pre-literacy and numeracy foundation</p>
+              </div>
+              <div class="card-hover bg-white rounded-3xl p-8 text-center">
+                <svg class="program-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="45" fill="#F0E5FF"/>
+                  <rect x="30" y="30" width="40" height="40" fill="#9D84B7" rx="8"/>
+                  <circle cx="40" cy="45" r="5" fill="white"/>
+                  <circle cx="60" cy="45" r="5" fill="white"/>
+                  <path d="M 40 60 Q 50 65 60 60" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+                <h3 class="text-content text-xl font-semibold mb-2">UKG</h3>
+                <p class="text-content opacity-70 text-sm mb-4">4.5 - 5.5 years</p>
+                <p class="text-content opacity-70">School readiness and critical thinking</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <!-- Testimonials -->
+        <section id="testimonials" class="py-20 px-4">
+          <div class="max-w-7xl mx-auto">
+            <h2 id="testimonial-heading" class="text-content text-4xl font-bold text-center mb-16">
+              ${config.testimonial_heading || defaultConfig.testimonial_heading}
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="testimonial-card">
+                <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+                <p class="text-content opacity-80 mb-4">"Intellistart has been amazing for our daughter. The teachers are caring and the curriculum is perfect!"</p>
+                <div class="font-semibold text-content">- Priya Sharma</div>
+              </div>
+              <div class="testimonial-card">
+                <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+                <p class="text-content opacity-80 mb-4">"Best preschool in the city! My son loves going to school every day. The parent app is super helpful."</p>
+                <div class="font-semibold text-content">- Rajesh Kumar</div>
+              </div>
+              <div class="testimonial-card">
+                <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+                <p class="text-content opacity-80 mb-4">"Safe, nurturing, and educational. Everything a parent could want for their child's first school experience."</p>
+                <div class="font-semibold text-content">- Anita Desai</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<footer>
-<p>© 2025 Intellistart Preschool</p>
-</footer>
+        <!-- Enquiry Form -->
+        <section id="contact" class="py-20 px-4 surface-bg">
+          <div class="max-w-2xl mx-auto">
+            <div class="enquiry-form">
+              <h2 class="text-content text-3xl font-bold text-center mb-8">Quick Enquiry</h2>
+              <form id="enquiry-form">
+                <div class="mb-6">
+                  <label for="parent-name" class="block text-content font-medium mb-2">Parent Name</label>
+                  <input type="text" id="parent-name" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-400 outline-none transition" required>
+                </div>
+                <div class="mb-6">
+                  <label for="child-name" class="block text-content font-medium mb-2">Child Name</label>
+                  <input type="text" id="child-name" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-400 outline-none transition" required>
+                </div>
+                <div class="mb-6">
+                  <label for="child-age" class="block text-content font-medium mb-2">Child Age</label>
+                  <input type="number" id="child-age" min="1" max="6" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-400 outline-none transition" required>
+                </div>
+                <div class="mb-6">
+                  <label for="phone" class="block text-content font-medium mb-2">Phone Number</label>
+                  <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-400 outline-none transition" required>
+                </div>
+                <div class="mb-6">
+                  <label for="email" class="block text-content font-medium mb-2">Email</label>
+                  <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-400 outline-none transition" required>
+                </div>
+                <button type="submit" class="primary-btn w-full text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition">
+                  Submit Enquiry
+                </button>
+              </form>
+              <div id="form-message" class="mt-4 text-center font-medium hidden"></div>
+            </div>
+          </div>
+        </section>
 
+        <!-- Footer -->
+        <footer class="text-content py-12 px-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <h3 class="text-white text-xl font-bold mb-4">Intellistart</h3>
+                <p id="footer-tagline" class="text-white opacity-90">${config.footer_tagline || defaultConfig.footer_tagline}</p>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-white opacity-90">
+                  <li><a href="#about" class="hover:opacity-100">About Us</a></li>
+                  <li><a href="#programs" class="hover:opacity-100">Programs</a></li>
+                  <li><a href="#admissions" class="hover:opacity-100">Admissions</a></li>
+                  <li><a href="#contact" class="hover:opacity-100">Contact</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold mb-4">Contact</h4>
+                <ul class="space-y-2 text-white opacity-90">
+                  <li>📞 +91 98765 43210</li>
+                  <li>📧 info@intellistart.com</li>
+                  <li>📍 Multiple Branches</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                  <a href="#" class="text-white text-2xl hover:opacity-80">📘</a>
+                  <a href="#" class="text-white text-2xl hover:opacity-80">📷</a>
+                  <a href="#" class="text-white text-2xl hover:opacity-80">🐦</a>
+                  <a href="#" class="text-white text-2xl hover:opacity-80">▶️</a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-white border-opacity-20 pt-8 text-center text-white opacity-90">
+              <p>&copy; 2024 Intellistart Preschool. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      `;
 
-<script src="script.js"></script>
-</body>
+      // Form submission handler
+      const form = document.getElementById('enquiry-form');
+      const formMessage = document.getElementById('form-message');
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        formMessage.textContent = 'Thank you! We will contact you soon.';
+        formMessage.className = 'mt-4 text-center font-medium text-green-600';
+        formMessage.classList.remove('hidden');
+        
+        form.reset();
+        
+        setTimeout(() => {
+          formMessage.classList.add('hidden');
+        }, 5000);
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    createWebsite();
+    onConfigChange(config);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9afc3ac466796091',t:'MTc2NjAzNTQyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
